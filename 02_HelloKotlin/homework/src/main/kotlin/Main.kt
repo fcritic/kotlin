@@ -1,7 +1,19 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+fun main()
+{
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+    println("Сколько лет?")
+    println("27")
+    println()
+    // Очень увлекательные вопросы
+    println("С кого ты города?")
+    println("Москва")
+    println()
+    /** Люблю отвечать на вопросы (нет или да) **/
+    print("Как тебя зовут? ")
+    print("Владислав")
+    println()
+    println()
+    println("Какие еще ты знаешь языки программирования?")
+    println("PHP, JavaScript, MySQL")
+    
 }
