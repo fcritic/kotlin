@@ -3,6 +3,44 @@ import kotlin.random.Random
 class NatureReserve {
     private var territory: MutableList<Any> = mutableListOf()
 
+    init {
+        for (i in 1..5) {
+            val energy = Random.nextInt(5, 10)
+            val weight = Random.nextInt(5, 10)
+            val maxAge = Random.nextInt(5, 7)
+            val bird = Bird("Хедвиг", energy, weight, maxAge)
+            addNatureReserve(bird)
+        }
+
+        for (i in 1..3) {
+            val energy = Random.nextInt(5, 10)
+            val weight = Random.nextInt(1, 3)
+            val maxAge = Random.nextInt(1, 3)
+
+            val fish = Fish("Немо", energy, weight, maxAge)
+            addNatureReserve(fish)
+        }
+
+        for (i in 1..2) {
+            val energy = Random.nextInt(5, 10)
+            val weight = Random.nextInt(5, 10)
+            val maxAge = Random.nextInt(3, 4)
+
+            val dog = Dog("Рекс", energy, weight, maxAge)
+            addNatureReserve(dog)
+        }
+
+
+        for (i in 1..3) {
+            val energy = Random.nextInt(1, 10)
+            val weight = Random.nextInt(1, 5)
+            val maxAge = Random.nextInt(1, 7)
+
+            val animal = Animal("без имени", energy, weight, maxAge)
+            addNatureReserve(animal)
+        }
+    }
+
     fun addNatureReserve(objects: Any) {
         territory.add(objects)
     }
