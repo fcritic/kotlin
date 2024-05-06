@@ -6,20 +6,24 @@
 что с вероятностью 25% патрон нанесёт урон, равный урон * коэффициент. **/
 
 enum class Ammo(
-    var damage: Int,                    // урон
-    val criticalDamageCoefficient: Int, // коэффициент критического урона
-    val criticalDamageChance: Int = 25  // шанс критического урона
+    private var damage: Int,                    // урон
+    private val criticalDamageCoefficient: Int, // коэффициент критического урона
+    private val criticalDamageChance: Int = 25  // шанс критического урона
 ) {
     PLAIN(10, 50),      // простой патрон
     FIREARM(20, 75),    // огнестрельный патрон
     EXPLOSIVE(25, 75);  // разрывной патрон
 
-    fun getCurrentDamage() {
+    fun getCurrentDamage(): Int {
+        var flagCritical: Boolean = false
+        var criticalDamage: Int = 0
         if (criticalDamageChance.isChanceRealized()) {
-            damage += (damage * criticalDamageCoefficient / 100)
-            println("Прошел критический урон - $damage")
+            criticalDamage  += (damage * criticalDamageCoefficient / 100)
+            flagCritical = true
+            println("Прошел критический урон - ${damage + criticalDamage}")
         } else {
-            println("Прошел урон - $damage")
+//            println("Прошел урон - $damage")
         }
+        return damage + criticalDamage
     }
 }

@@ -3,14 +3,10 @@ import kotlin.random.Random
 abstract class AbstractWeapon(
     val maxAmmo: Int,            // макс. кол-во патронов в магазине.
     val fireType: FireType,      // вид стрельбы
+    val name: String
 ) {
     private val magazine = Stack<Ammo>()                      // магазин
     private var hasAmmo: Boolean = magazine.isEmpty()         // проверка магазина на наличие патрон
-
-    // т.к. по дефолту оружие разряжено, то мы перезаряжаем его
-    init {
-        recharge()
-    }
 
     // создание патронов
     private fun createAmmo(): Ammo {
@@ -26,25 +22,44 @@ abstract class AbstractWeapon(
         repeat(maxAmmo) {
             magazine.push(ammo)
         }
-//        hasAmmo = true
+        hasAmmo = magazine.isEmpty()
+        println("Перезарядка")
     }
 
     // выстрел
-    fun shot() {
-        if (hasAmmo) {
+    fun shot(): MutableList<Int> {
+        val listDamage: MutableList<Int> = mutableListOf()
+        if (!hasAmmo) {
             when (fireType) {
+
                 FireType.Single -> {
-                    magazine.pop()
+                    val ammo = magazine.pop()
+                    listDamage.add(ammo?.getCurrentDamage() ?: 0)
+
+                    val totalDamage = listDamage.sumOf { it }
+                    println("Патрон ${createAmmo()}")
+                    println("Общий урон составил: $totalDamage")
+
+                    return listDamage
                 }
+
                 is FireType.Queue -> {
                     val queueSize = fireType.sizeQueue
                     repeat(queueSize) {
-                        magazine.pop()
+                        val ammo = magazine.pop()
+                        listDamage.add(ammo?.getCurrentDamage() ?: 0)
                     }
+                    val totalDamage = listDamage.sumOf { it }
+                    println("Патрон ${createAmmo()}")
+                    println("Общий урон составил: $totalDamage")
+
+                    return listDamage
                 }
             }
         } else {
+            println("Патроны закончились, требуется перезарядка")
             recharge()
+            return listDamage
         }
     }
 
