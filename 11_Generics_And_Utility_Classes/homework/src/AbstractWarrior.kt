@@ -1,13 +1,13 @@
 import kotlin.random.Random
 
 abstract class AbstractWarrior(
-    override var isKilled: Boolean = false,                 // убит?
+    override var isKilled: Boolean = false,                 // убит? false = нет / true = да
     override val chanceAvoidBeingHit: Int,                  // шанс избежать попадания
     val accuracy: Int                                       // точность
 ) : Warrior {
     private var maxHealth: Int = 100                        // макс.здоровье
     var currentHealth: Int = maxHealth                      // текущие здоровье
-    var takeTotalDamage: Int = 0                            // общий полеченный урон
+    private var takeTotalDamage: Int = 0                    // общий полеченный урон
 
     private val randomWeapon: AbstractWeapon by lazy {      // возвращает вид оружия
         val weapons = listOf(
@@ -20,48 +20,51 @@ abstract class AbstractWarrior(
     }
 
     // атака
-    override fun attack(warrior: Warrior) {
-        println("Персонаж имея звание: ${warrior.position}")
-        println("Использовал оружие: ${randomWeapon.name}")
-        val listDamage = randomWeapon.shot()
+    override fun attack(enemy: Warrior) {
+        if (isKilled) return
 
+        val info: String = """
+             -----------------------------
+             Воин имея звание: $position ($team)
+             Здоровье: $currentHealth
+             Использует оружие: ${randomWeapon.name}
+             """.trimIndent()
+        println(info)
+
+        val listDamage = randomWeapon.shot()
+        takeTotalDamage = 0
 
         listDamage.forEach { damage ->
-            if (isHit(warrior)) {
-                if (!isAvoidHit(warrior)) {
-
-                    if (listDamage.sumOf { it } > currentHealth) {
-                        println("Воин убит")
-                        warrior.takeDamage(currentHealth)
-                        warrior.isKilled = true
-                        return
+            if (!enemy.isKilled) {
+                if (isHit(enemy)) {
+                    if (!isAvoidHit(enemy)) {
+                        enemy.takeDamage(damage)
+                        takeTotalDamage += damage
                     } else {
-                        warrior.takeDamage(damage)
+                        println("${enemy.position} увернулся")
                     }
-
-                    takeTotalDamage += damage
-
                 } else {
-                    println("Воин увернулся")
+                    println("Промах")
                 }
-            } else {
-                println("Промах")
             }
         }
-        println("Полученный общий урон: $takeTotalDamage")
+        println("Нанесенный общий урон: $takeTotalDamage")
     }
 
     // получение урона
     override fun takeDamage(damage: Int) {
-        currentHealth -= damage
-        if (currentHealth < 0) {
-            println("Воин убит")
+        if (isKilled) return
+        if (damage >= currentHealth || currentHealth <= 0) {
+            println("$position убит")
+            isKilled = true
+        } else {
+            currentHealth -= damage
         }
     }
 
     // проверка на попадания
     private fun isHit(warrior: Warrior): Boolean {
-        return accuracy.isChanceRealized()
+        return (warrior as AbstractWarrior).accuracy.isChanceRealized()
     }
 
     // проверка на уворот
