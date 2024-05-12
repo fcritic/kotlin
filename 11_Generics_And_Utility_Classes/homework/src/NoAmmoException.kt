@@ -1,0 +1,1 @@
+class NoAmmoException : Throwable("Патроны закончились, требуется перезарядка")

@@ -6,7 +6,6 @@ abstract class AbstractWeapon(
     val name: String
 ) {
     private val magazine = Stack<Ammo>()                      // магазин
-    private var hasAmmo: Boolean = magazine.isEmpty()         // проверка магазина на наличие патрон
 
     // создание патронов
     private fun createAmmo(): Ammo {
@@ -22,38 +21,39 @@ abstract class AbstractWeapon(
         repeat(maxAmmo) {
             magazine.push(ammo)
         }
-        hasAmmo = magazine.isEmpty()
         println("Перезарядка")
     }
 
     // выстрел
-    fun shot(): MutableList<Int> {
-        val listDamage: MutableList<Int> = mutableListOf()
-        hasAmmo = magazine.isEmpty()
+    fun shot(): List<Int> {
+        val listAmmo: MutableList<Int> = mutableListOf()
 
-        if (hasAmmo) {
+        if (magazine.isEmpty()) {
+//            throw NoAmmoException()
             println("Патроны закончились, требуется перезарядка")
             recharge()
-            return listDamage
+            return listAmmo
         }
 
         when (fireType) {
             is FireType.Single -> {
                 val ammo = magazine.pop()
-                listDamage.add(ammo?.getCurrentDamage() ?: 0)
+                listAmmo.add(ammo?.getCurrentDamage() ?: 0)
             }
             is FireType.Queue -> {
                 val queueSize = fireType.sizeQueue
-                repeat(queueSize) {
-                    val ammo = magazine.pop()
-                    listDamage.add(ammo?.getCurrentDamage() ?: 0)
-                }
+                if (magazine.size() >= queueSize) {
+                    repeat(queueSize) {
+                        val ammo = magazine.pop()
+                        listAmmo.add(ammo?.getCurrentDamage() ?: 0)
+                    }
+                } else recharge()
             }
         }
-        val totalDamage = listDamage.sumOf { it }
+        val totalDamage = listAmmo.sumOf { it }
         println("Патрон ${createAmmo()}")
         println("Общий урон составил: $totalDamage")
-        return listDamage
+        return listAmmo
     }
 
 }

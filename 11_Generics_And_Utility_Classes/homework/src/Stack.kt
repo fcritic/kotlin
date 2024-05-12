@@ -16,4 +16,8 @@ class Stack<T> {
     fun isEmpty(): Boolean {
         return elements.isEmpty()
     }
+
+    fun size(): Int {
+        return elements.size
+    }
 }

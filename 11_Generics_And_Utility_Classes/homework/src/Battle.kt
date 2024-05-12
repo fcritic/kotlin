@@ -34,23 +34,21 @@ class Battle {
         val listFirstTeam = firstTeam.values.first()
         val listSecondTeam = secondTeam.values.first()
 
-        if (listFirstTeam.isNotEmpty() && listSecondTeam.isNotEmpty()) {
+        val warriorFirstTeam = listFirstTeam.removeFirst()
+        val warriorSecondTeam = listSecondTeam.removeFirst()
+
+        if (!isBattleFinished) {
             listFirstTeam.shuffle()
             listSecondTeam.shuffle()
 
-            val warriorFirstTeam = listFirstTeam.removeFirst()
-            val warriorSecondTeam = listSecondTeam.removeFirst()
-
-            if (!isBattleFinished) {
-                while (!warriorFirstTeam.isKilled && !warriorSecondTeam.isKilled) {
-                    warriorFirstTeam.attack(warriorSecondTeam)
-                    warriorSecondTeam.attack(warriorFirstTeam)
-                }
-                when {
-                    !warriorFirstTeam.isKilled -> listFirstTeam.add(warriorFirstTeam)
-                    !warriorSecondTeam.isKilled -> listSecondTeam.add(warriorSecondTeam)
-                }
+            while (!warriorFirstTeam.isKilled && !warriorSecondTeam.isKilled) {
+                warriorFirstTeam.attack(warriorSecondTeam)
+                warriorSecondTeam.attack(warriorFirstTeam)
             }
+        }
+        when {
+            !warriorFirstTeam.isKilled -> listFirstTeam += warriorFirstTeam
+            !warriorSecondTeam.isKilled -> listSecondTeam += warriorSecondTeam
         }
     }
 
@@ -61,8 +59,7 @@ class Battle {
         when (battleState) {
             is BattleState.Progress -> {}
 
-            is BattleState.FirstTeamWin ->
-                info = """
+            is BattleState.FirstTeamWin -> info = """
                 Битва завершена. 
                 Результат: Победила первая команда
              """.trimIndent()

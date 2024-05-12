@@ -1,21 +1,33 @@
+import kotlin.random.Random
+
 object Weapons {
+    fun randomWeapon(): AbstractWeapon {
+        val weapons = listOf(
+            createPistol(),
+            createShotgun(),
+            createSniperRifle(),
+            createAssaultRifle()
+        )
+        return weapons[Random.nextInt(weapons.size)]
+    }
+
     private fun createWeapon(maxAmmo: Int, fireType: FireType, name: String): AbstractWeapon {
         return object : AbstractWeapon(maxAmmo, fireType, name) {}
     }
 
-    fun createPistol(): AbstractWeapon {
+    private fun createPistol(): AbstractWeapon {
         return createWeapon(7, FireType.Single, "пистолет")
     }
 
-    fun createSniperRifle() : AbstractWeapon {
+    private fun createSniperRifle(): AbstractWeapon {
         return createWeapon(5, FireType.Single, "снайперская винтовка")
     }
 
-    fun createShotgun() : AbstractWeapon {
+    private fun createShotgun(): AbstractWeapon {
         return createWeapon(8, FireType.Single, "дробовик")
     }
 
-    fun createAssaultRifle() : AbstractWeapon {
-        return createWeapon(30, FireType.Queue(5), "штурмовая винтовка")
+    private fun createAssaultRifle(): AbstractWeapon {
+        return createWeapon(31, FireType.Queue(5), "штурмовая винтовка")
     }
 }

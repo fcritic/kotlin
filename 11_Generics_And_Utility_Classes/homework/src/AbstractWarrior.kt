@@ -8,16 +8,7 @@ abstract class AbstractWarrior(
     private var maxHealth: Int = 100                        // макс.здоровье
     var currentHealth: Int = maxHealth                      // текущие здоровье
     private var takeTotalDamage: Int = 0                    // общий полеченный урон
-
-    private val randomWeapon: AbstractWeapon by lazy {      // возвращает вид оружия
-        val weapons = listOf(
-            Weapons.createPistol(),
-            Weapons.createShotgun(),
-            Weapons.createSniperRifle(),
-            Weapons.createAssaultRifle()
-        )
-        weapons[Random.nextInt(weapons.size)]
-    }
+    private val randomWeapon: AbstractWeapon = Weapons.randomWeapon()      // возвращает вид оружия
 
     // атака
     override fun attack(enemy: Warrior) {
@@ -31,10 +22,11 @@ abstract class AbstractWarrior(
              """.trimIndent()
         println(info)
 
-        val listDamage = randomWeapon.shot()
+//        val exception = runCatching {
+        val listAmmo = randomWeapon.shot()
         takeTotalDamage = 0
 
-        listDamage.forEach { damage ->
+        listAmmo.forEach { damage ->
             if (!enemy.isKilled) {
                 if (isHit(enemy)) {
                     if (!isAvoidHit(enemy)) {
@@ -49,11 +41,15 @@ abstract class AbstractWarrior(
             }
         }
         println("Нанесенный общий урон: $takeTotalDamage")
+//        }
+
+//        if (exception.isFailure) {
+//            randomWeapon.recharge()
+//        }
     }
 
     // получение урона
     override fun takeDamage(damage: Int) {
-        if (isKilled) return
         if (damage >= currentHealth || currentHealth <= 0) {
             println("$position убит")
             isKilled = true
