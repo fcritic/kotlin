@@ -1,19 +1,18 @@
 import kotlin.random.Random
 
 abstract class AbstractWarrior(
-    override var isKilled: Boolean = false,                 // убит? false = нет / true = да
-    override val chanceAvoidBeingHit: Int,                  // шанс избежать попадания
-    val accuracy: Int                                       // точность
+    override var isKilled: Boolean = false,                                // убит? false = нет / true = да
+    override val chanceAvoidBeingHit: Int,                                 // шанс избежать попадания
+    val accuracy: Int                                                      // точность
 ) : Warrior {
-    private var maxHealth: Int = 100                        // макс.здоровье
-    var currentHealth: Int = maxHealth                      // текущие здоровье
-    private var takeTotalDamage: Int = 0                    // общий полеченный урон
+    private var maxHealth: Int = 100                                       // макс.здоровье
+    var currentHealth: Int = maxHealth                                     // текущие здоровье
+    private var takeTotalDamage: Int = 0                                   // общий полеченный урон
     private val randomWeapon: AbstractWeapon = Weapons.randomWeapon()      // возвращает вид оружия
 
     // атака
     override fun attack(enemy: Warrior) {
         if (isKilled) return
-
         val info: String = """
              -----------------------------
              Воин имея звание: $position ($team)
@@ -22,7 +21,8 @@ abstract class AbstractWarrior(
              """.trimIndent()
         println(info)
 
-//        val exception = runCatching {
+        val exception = runCatching {
+
         val listAmmo = randomWeapon.shot()
         takeTotalDamage = 0
 
@@ -41,11 +41,11 @@ abstract class AbstractWarrior(
             }
         }
         println("Нанесенный общий урон: $takeTotalDamage")
-//        }
+        }
 
-//        if (exception.isFailure) {
-//            randomWeapon.recharge()
-//        }
+        if (exception.isFailure) {
+            randomWeapon.recharge()
+        }
     }
 
     // получение урона

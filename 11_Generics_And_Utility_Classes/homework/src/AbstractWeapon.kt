@@ -16,7 +16,7 @@ abstract class AbstractWeapon(
     }
 
     // перезарядка
-    private fun recharge() {
+    fun recharge() {
         val ammo = createAmmo()
         repeat(maxAmmo) {
             magazine.push(ammo)
@@ -29,10 +29,10 @@ abstract class AbstractWeapon(
         val listAmmo: MutableList<Int> = mutableListOf()
 
         if (magazine.isEmpty()) {
-//            throw NoAmmoException()
-            println("Патроны закончились, требуется перезарядка")
-            recharge()
-            return listAmmo
+            throw NoAmmoException()
+//            println("Патроны закончились, требуется перезарядка")
+//            recharge()
+//            return listAmmo
         }
 
         when (fireType) {
