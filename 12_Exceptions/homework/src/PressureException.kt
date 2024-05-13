@@ -1,0 +1,1 @@
+abstract class PressureException(message: String) : Throwable(message)
