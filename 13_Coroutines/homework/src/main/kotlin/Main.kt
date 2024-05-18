@@ -1,45 +1,43 @@
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.math.BigInteger
+import kotlinx.coroutines.*
 
-fun main(): Unit = runBlocking {
+val parentJob = Job()
+val scope = CoroutineScope(parentJob)
+
+suspend fun main() {
     val fibonacci = Fibonacci
-    println("Введите число больше 0: ")
-    val n: Int = readlnOrNull()?.toIntOrNull() ?: return@runBlocking println("Ошибка")
 
-    launch {
-        println("Start runBlocking...")
-        for (i in 0..4) {
-            delay(1000)
-            fibonacci.take(n + i)
-        }
-        println("Finish runBlocking")
-    }
-}
-
-object Fibonacci {
-    suspend fun take(n: Int): BigInteger {
-        var result: BigInteger = BigInteger.ZERO
-        var numberOne: BigInteger = BigInteger.ZERO
-        var numberTwo: BigInteger = BigInteger.ONE
-
-        when {
-            n <= 0 -> {
-                println("Ошибка")
-                return result
+    val jobFirst = scope.launch {
+        println("Start `first`...")
+        try {
+            withTimeout(3_000) {
+                fibonacci.take(78)
             }
-
-            n == 1 -> result = BigInteger.ONE
-            else -> {
-                for (i in 2..n) {
-                    result = numberOne + numberTwo
-                    numberOne = numberTwo
-                    numberTwo = result
-                }
-            }
+        } catch (e: TimeoutCancellationException) {
+            println("\nПревышено время ожидания (Coroutine first)")
         }
-        println("Число Фибоначчи для $n: $result")
-        return result
+        println("Finish `first`")
+
     }
+
+    val jobSecond = scope.launch {
+        println("Start `second`...")
+        try {
+            withTimeout(3_000) {
+                fibonacci.take(285)
+            }
+        } catch (e: TimeoutCancellationException) {
+            println("\nПревышено время ожидания (Coroutine second)")
+        }
+        println("Finish `second`")
+    }
+
+    val progressJob = scope.launch {
+        while (jobFirst.isActive || jobSecond.isActive) {
+            print(".")
+            delay(100)
+        }
+    }
+    jobFirst.join()
+    jobSecond.join()
+    progressJob.cancelAndJoin()
 }
