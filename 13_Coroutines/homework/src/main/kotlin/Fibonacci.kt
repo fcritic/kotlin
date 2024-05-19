@@ -25,9 +25,8 @@ object Fibonacci {
             result = x + y
             x = y
             y = result
-            delay(10)
+            delay(1)
         }
-        println("\nЧисло Фибоначчи для $n: $result")
         return result
     }
 }

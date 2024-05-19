@@ -1,4 +1,5 @@
 import kotlinx.coroutines.*
+import kotlin.random.Random
 
 val parentJob = Job()
 val scope = CoroutineScope(parentJob)
@@ -6,38 +7,30 @@ val scope = CoroutineScope(parentJob)
 suspend fun main() {
     val fibonacci = Fibonacci
 
-    val jobFirst = scope.launch {
-        println("Start `first`...")
-        try {
-            withTimeout(3_000) {
-                fibonacci.take(78)
-            }
-        } catch (e: TimeoutCancellationException) {
-            println("\nПревышено время ожидания (Coroutine first)")
-        }
-        println("Finish `first`")
+    println("Запуск расчета:")
+    val jobList = List(3) { count ->
+        val infoCoroutine = "К - ${count + 1}"
+        val n = Random.nextInt(100,250)
 
-    }
-
-    val jobSecond = scope.launch {
-        println("Start `second`...")
-        try {
-            withTimeout(3_000) {
-                fibonacci.take(285)
+        scope.launch {
+            try {
+                withTimeout(3_000) {
+                    val result = fibonacci.take(n)
+                    println("\nЧисло Фибоначчи для $n: $result ($infoCoroutine)")
+                }
+            } catch (e: TimeoutCancellationException) {
+                println("\nПревышено время ожидания числа: $n ($infoCoroutine)")
             }
-        } catch (e: TimeoutCancellationException) {
-            println("\nПревышено время ожидания (Coroutine second)")
         }
-        println("Finish `second`")
+
     }
 
     val progressJob = scope.launch {
-        while (jobFirst.isActive || jobSecond.isActive) {
+        while (jobList.any { it.isActive}) {
             print(".")
-            delay(100)
+            delay(200)
         }
     }
-    jobFirst.join()
-    jobSecond.join()
+    jobList.forEach { it.join() }
     progressJob.cancelAndJoin()
 }
