@@ -1,21 +1,15 @@
-import kotlin.random.Random
+import kotlinx.coroutines.*
 
-fun main() {
-    val card = Card()
-    val gameCard = card.createCard()
-    val blueColor = "\u001B[34m"
-    val resetColor = "\u001B[0m"
+val scope = CoroutineScope(Job() + Dispatchers.Default)
 
-//    val elementToRemove = "  "
-//    gameCard.removeAll { it == elementToRemove }
+suspend fun main() {
+    val player1 = Player("Alex", GameCard())
+    val player2 = Player("Petr", GameCard())
+    val player3 = Player("Ana", GameCard())
 
-    for (pair in gameCard) {
-        var (booleanValue, stringValue) = pair
-        print("${stringValue}_")
-    }
+    val players: List<Player> = listOf(player1, player2, player3)
+    val presenter = Presenter()
 
-    println()
-    println()
-    card.printCard(gameCard, 10)
+    Game(players, presenter).playGame()
 
 }
