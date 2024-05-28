@@ -1,52 +1,65 @@
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.takeWhile
 
 class Game(
     private val players: List<Player>,
     private val presenter: Presenter
 ) {
-    val scope = CoroutineScope(Job() + Dispatchers.Default)
-    private suspend fun markNumberOnGameCard(
-        card: MutableList<Pair<Boolean, String>>,
-        numberBarrels: Int
-    ): MutableList<Pair<Boolean, String>> {
-        for ((index, pair) in card.withIndex()) {
-            val (_, stringValue) = pair
-
-            delay(1_00)
-            if (stringValue == numberBarrels.toString()) {
-                card[index] = true to stringValue
-            }
-        }
-        return card
-    }
-
     suspend fun playGame() = runBlocking {
         val numberFlow = presenter.generateNumbersBarrels()
 
-        players.forEach { player ->
+        players.forEachIndexed { index, player ->
             player.gameCards.forEach { gameCard ->
+                val name = player.name
+                var card = gameCard
+
                 launch {
-                    val name = player.name
-                    var card = gameCard
-                    var isGameOver = false
+                    while (currentCoroutineContext().isActive) {
+                        numberFlow.collect { numberBarrel ->
+                            handleNumberBarrel(numberBarrel, index)
+                            card = player.markNumberOnGameCard(card, numberBarrel)
+                            printGameCard(card, name)
 
-                    numberFlow.takeWhile { !isGameOver }.collect { numberBarrel ->
-
-                        println("Бочонок с номером: $numberBarrel")
-                        card = markNumberOnGameCard(card, numberBarrel)
-                        println("\nКарта игрока: $name")
-                        GameCardPrinter().printGameCard(card)
-
-                        if (gameCard.all { it.first }) {
-                            println("Игрок $name выйграл!")
-                            isGameOver = true
-                            cancel()
+                            if (checkGameEnd()) {
+                                cancel()
+                            }
+                            if (checkPlayerWin(card)) {
+                                announcePlayerWin(player)
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun handleNumberBarrel(numberBarrel: Int, playerIndex: Int) {
+        if (playerIndex == players.lastIndex) {
+            println("\n-----------------------------------------")
+            println("Бочонок с номером: $numberBarrel")
+            println("-----------------------------------------")
+        }
+    }
+
+    private suspend fun printGameCard(card: MutableList<Pair<Boolean, String>>, playerName: String) {
+        GameCardPrinter().printGameCard(card, playerName)
+    }
+
+    private fun checkGameEnd(): Boolean {
+        return players.any { player ->
+            player.gameCards.any { card ->
+                card.all { number -> number.first }
+            }
+        }
+    }
+
+    private fun checkPlayerWin(card: MutableList<Pair<Boolean, String>>): Boolean {
+        return card.all { it -> it.first }
+    }
+
+    private fun announcePlayerWin(player: Player) {
+        println("\n-----------------------------------------")
+        println("Победил игрок: ${player.name}")
+        println("-----------------------------------------")
     }
 
 }

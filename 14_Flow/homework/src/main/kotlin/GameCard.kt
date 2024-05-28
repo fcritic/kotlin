@@ -1,5 +1,4 @@
 class GameCard {
-
     fun createCard(): MutableList<Pair<Boolean, String>> {
         /* Игровая карта представлена в виде изменяемой коллекции
         которая хранит в себе пары в виде флага для выделения числа
@@ -30,5 +29,4 @@ class GameCard {
         const val ROW_LENGTH = 9
         const val NUMBER_OF_BARRELS = 90
     }
-
 }

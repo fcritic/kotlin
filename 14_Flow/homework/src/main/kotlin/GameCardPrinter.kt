@@ -1,11 +1,13 @@
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 class GameCardPrinter {
-
-    fun printGameCard(card: MutableList<Pair<Boolean, String>>) = runBlocking {
+    suspend fun printGameCard(card: MutableList<Pair<Boolean, String>>, name: String) = runBlocking {
         val blueColor = "\u001B[34m"
         val resetColor = "\u001B[0m"
 
+        delay(100)
+        println("\nКарта игрока: $name")
         for ((index, pair) in card.withIndex()) {
             val (booleanValue, stringValue) = pair
 
@@ -20,5 +22,4 @@ class GameCardPrinter {
             if ((index + 1) % 9 == 0) println("|")
         }
     }
-
 }

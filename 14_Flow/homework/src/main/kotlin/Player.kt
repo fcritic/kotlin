@@ -12,4 +12,18 @@ class Player(
         }
         return gameCards
     }
+
+    fun markNumberOnGameCard(
+        card: MutableList<Pair<Boolean, String>>,
+        numberBarrels: Int
+    ): MutableList<Pair<Boolean, String>> {
+        for ((index, pair) in card.withIndex()) {
+            val (_, stringValue) = pair
+
+            if (stringValue == numberBarrels.toString()) {
+                card[index] = true to stringValue
+            }
+        }
+        return card
+    }
 }

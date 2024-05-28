@@ -1,7 +1,5 @@
 import kotlinx.coroutines.*
 
-val scope = CoroutineScope(Job() + Dispatchers.Default)
-
 suspend fun main() {
     val player1 = Player("Alex", GameCard())
     val player2 = Player("Petr", GameCard())
@@ -11,5 +9,4 @@ suspend fun main() {
     val presenter = Presenter()
 
     Game(players, presenter).playGame()
-
 }

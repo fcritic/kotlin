@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.onEach
 
 class Presenter {
     fun generateNumbersBarrels(): Flow<Int> {
-        return (1..90).shuffled().asFlow().onEach { delay(10) }
+        return (1..90).shuffled().asFlow().onEach { delay(50) }
     }
 }
