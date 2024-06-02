@@ -4,7 +4,7 @@ fun main() {
 
     printInfo(lg)
 //    printInfo(panasonic)
-    
+
     lg.includingOn()
     lg.switchingChannelsForward()
     lg.switchingChannelsBack()

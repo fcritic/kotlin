@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f71730bf-dad2-4983-9c37-6c8ccc3fd766" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../02_HelloKotlin/homework/.gradle/7.4.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../02_HelloKotlin/homework/.gradle/7.4.2/checksums/checksums.lock" afterDir="false" />
@@ -34,7 +37,11 @@
       <change beforePath="$PROJECT_DIR$/../02_HelloKotlin/homework/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../02_HelloKotlin/homework/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../02_HelloKotlin/homework/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../02_HelloKotlin/homework/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../03_Variables_types/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../03_Variables_types/homework/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/homework/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../07_ClassesAndObjects/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../07_ClassesAndObjects/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../07_ClassesAndObjects/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../07_ClassesAndObjects/homework/src/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +51,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2ex55icFKtnxViSjBoGSD4nyAAk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -57,8 +64,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/skillbox/kotlin/06_Collections",
+    "last_opened_file_path": "D:/skillbox/kotlin/10_OOP3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,6 +91,9 @@
       <option name="presentableId" value="Default" />
       <updated>1712833206613</updated>
       <workItem from="1712833207689" duration="30000" />
+      <workItem from="1713030627654" duration="2262000" />
+      <workItem from="1713231354570" duration="2313000" />
+      <workItem from="1713918127533" duration="626000" />
     </task>
     <servers />
   </component>

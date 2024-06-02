@@ -19,12 +19,8 @@ class Game(
                             card = player.markNumberOnGameCard(card, numberBarrel)
                             printGameCard(card, name)
 
-                            if (checkGameEnd()) {
-                                cancel()
-                            }
-                            if (checkPlayerWin(card)) {
-                                announcePlayerWin(player)
-                            }
+                            if (checkGameEnd()) cancel()
+                            if (checkPlayerWin(card)) announcePlayerWin(name)
                         }
                     }
                 }
@@ -53,12 +49,12 @@ class Game(
     }
 
     private fun checkPlayerWin(card: MutableList<Pair<Boolean, String>>): Boolean {
-        return card.all { it -> it.first }
+        return card.all { it.first }
     }
 
-    private fun announcePlayerWin(player: Player) {
+    private fun announcePlayerWin(name: String) {
         println("\n-----------------------------------------")
-        println("Победил игрок: ${player.name}")
+        println("Победил игрок: $name")
         println("-----------------------------------------")
     }
 

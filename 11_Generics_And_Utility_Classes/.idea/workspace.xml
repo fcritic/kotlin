@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="21ed9013-b78f-45ca-a7d0-7b8423e82b7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../02_HelloKotlin/homework/.gradle/7.4.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../02_HelloKotlin/homework/.gradle/7.4.2/checksums/checksums.lock" afterDir="false" />
@@ -39,6 +42,12 @@
       <change beforePath="$PROJECT_DIR$/../06_Collections/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../06_Collections/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../07_ClassesAndObjects/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../07_ClassesAndObjects/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../07_ClassesAndObjects/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../07_ClassesAndObjects/homework/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/homework/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12_Exceptions/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../12_Exceptions/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../14_Flow/homework/src/main/kotlin/Card.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../14_Flow/homework/src/main/kotlin/Card.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../14_Flow/homework/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../14_Flow/homework/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../14_Flow/homework/src/main/kotlin/Player.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../14_Flow/homework/src/main/kotlin/Player.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,9 +57,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2fc1yoI2HGiJC0GHZGkb6aZjCUt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,6 +71,10 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/skillbox/kotlin/11_Generics_And_Utility_Classes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -83,6 +96,9 @@
       <option name="presentableId" value="Default" />
       <updated>1714085809129</updated>
       <workItem from="1714085810143" duration="30000" />
+      <workItem from="1715821209493" duration="302000" />
+      <workItem from="1715898711035" duration="1922000" />
+      <workItem from="1716321382829" duration="1507000" />
     </task>
     <servers />
   </component>

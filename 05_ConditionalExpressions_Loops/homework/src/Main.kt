@@ -2,36 +2,17 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main()
 {
-    calculationFibonacci()
+    val priceList = mutableMapOf(
+        "Milk" to 80,
+        "Cheese" to 50,
+        "Apples" to 150,
+        "Bananas" to 70,
+        "Coca-cola" to 180,
+        "Yogurt" to 50
+    )
+
+    val sortedMap = priceList.toSortedMap(compareBy<String> { priceList[it] }.thenBy { it })
+    println(sortedMap)
 }
 
-fun calculationFibonacci()
-{
-    var result: Long = 0
-    var numberOne: Long = 0
-    var numberTwo: Long = 1
 
-    while (result.toInt() == 0) {
-        println("Введите число больше 0: ")
-        val n = readLine()?.toIntOrNull()
-
-        if (n == null || n <= 0) {
-            println("Ошибка")
-            continue
-        } else if (n == 1) {
-            result = 1
-
-        } else {
-            for (i in 2..n) {
-                result = numberOne + numberTwo
-                numberOne = numberTwo
-                numberTwo = result
-            }
-        }
-        if (result < 0) {
-            println("Ошибка на стороне сервера")
-            return
-        }
-        println("Число Фибоначчи для $n: $result")
-    }
-}

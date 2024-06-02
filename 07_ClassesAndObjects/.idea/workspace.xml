@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5a77f14c-3352-488b-ad38-e6ae56a28478" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../02_HelloKotlin/homework/.gradle/7.4.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../02_HelloKotlin/homework/.gradle/7.4.2/checksums/checksums.lock" afterDir="false" />
@@ -36,6 +39,8 @@
       <change beforePath="$PROJECT_DIR$/../03_Variables_types/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../03_Variables_types/homework/src/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../05_ConditionalExpressions_Loops/homework/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../06_Collections/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../06_Collections/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/homework/src/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +50,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2f11u0LF6u1FjBGbS8Jp0wpeULh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -58,7 +63,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/skillbox/kotlin/07_ClassesAndObjects",
+    "last_opened_file_path": "D:/skillbox/kotlin/09_OOP2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -80,6 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712953988307</updated>
       <workItem from="1712953989441" duration="28000" />
+      <workItem from="1713188545181" duration="6487000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-import kotlinx.coroutines.*
+import kotlin.random.Random
 
 suspend fun main() {
     val player1 = Player("Alex", GameCard())
